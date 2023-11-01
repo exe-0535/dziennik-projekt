@@ -1,0 +1,24 @@
+.login-pane {
+    -fx-alignment: CENTER;
+    -fx-pref-width: 25%;
+    -fx-background-color: #FFFFFF;
+    -fx-padding: 20px;
+    -fx-spacing: 10px;
+}
+
+
+.login-pane {
+    -fx-font-size: 18px;
+}
+
+
+.login-pane .text-field, .login-pane .password-field {
+    -fx-max-height: 10px;
+    -fx-max-width: 250px;
+}
+
+.login-pane .button {
+    -fx-max-width: 150px;
+    -fx-background-color: #0077FF;
+    -fx-text-fill: white;
+}
