@@ -14,6 +14,7 @@ import java.io.IOException;
 import java.sql.*;
 
 public class DBUtils {
+    private static final BasicDataSource dataSource = new BasicDataSource();
 
     // Change Scene Method
     public static void changeScene(ActionEvent event, String fxmlFile, String title, String username) {
@@ -49,26 +50,15 @@ public class DBUtils {
 
     // Log In Method
     public static void logInUser(ActionEvent event, String username, String password) {
-        BasicDataSource dataSource = new BasicDataSource();
-        dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/schooldiary");
-        dataSource.setUsername("root");
-        dataSource.setPassword("");
 
-        // Pooling settings
-        dataSource.setInitialSize(5); // The initial number of connections
-        dataSource.setMaxTotal(10); // Maximum number of active connections
-        dataSource.setMaxIdle(5); // Maximum number of idle connections
-        dataSource.setMaxWaitMillis(5000);
+        setPooling();
 
-        Connection conn = null;
         PreparedStatement ps = null;
         ResultSet res = null;
 
-        try {
+        try (Connection conn = dataSource.getConnection()) {
 
             // Establish connection and send a db query
-            conn = dataSource.getConnection();
             ps = conn.prepareStatement("SELECT password FROM users WHERE username = ?");
             ps.setString(1, username);
             res = ps.executeQuery();
@@ -102,14 +92,14 @@ public class DBUtils {
         } catch (SQLException e) {
             e.printStackTrace();
         } finally {
-            closeConnection(res, ps, conn);
+            closeConnection(res, ps);
         }
 
 
     }
 
     // Close DB Connection Method
-    public static void closeConnection(ResultSet res, PreparedStatement ps, Connection conn) {
+    public static void closeConnection(ResultSet res, PreparedStatement ps) {
         if (res != null) {
             try {
                 res.close();
@@ -124,12 +114,20 @@ public class DBUtils {
                 e.printStackTrace();
             }
         }
-        if (conn != null) {
-            try {
-                conn.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
-        }
     }
+
+    // Set pooling parameters for the database
+    public static void setPooling() {
+        dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/schooldiary");
+        dataSource.setUsername("root");
+        dataSource.setPassword("");
+
+        // Pooling settings
+        dataSource.setInitialSize(3);
+        dataSource.setMaxTotal(5);
+        dataSource.setMaxIdle(5);
+        dataSource.setMaxWaitMillis(5000);
+    }
+
 }
