@@ -17,7 +17,7 @@
   - Use of MVC app architecture
   - Use of Apache Maven
   - MySQL database connectivity 
-  - Use of Apache DBCP2 for Database Connection Pooling
+  - Use of Database Connection Pooling with Apache DBCP2 for improving performance
   - Use of utility classes
 
 ## Week 1
