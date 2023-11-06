@@ -1,5 +1,25 @@
 # School project of school diary
 
+## Requirements:
+  - Input data validation ✅
+  - Method / Constructor overloading ⭕
+  - Use of encapsulation ✅
+  - Use of abstraction ✅
+  - Use of polymorphism ✅
+  - Use of static and not static methods ✅
+  - Use of collections ⭕
+  - Introduction of functionality of adding, deleting, finding and sorting objects ⭕
+  - Initializing at least 20 sample data on which operations will be performed ⭕
+  - Error handling (optional) ✅
+    
+### Additional features:
+  - Use of JavaFX library
+  - Use of MVC app architecture
+  - Use of Apache Maven
+  - MySQL database connectivity 
+  - Use of Database Connection Pooling with Apache DBCP2 for improving performance
+  - Use of utility classes
+
 ## Week 1
   - Connecting the app to MySQL Database
   - Creating simple user UI
