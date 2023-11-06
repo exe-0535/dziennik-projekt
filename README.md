@@ -1,4 +1,4 @@
-# School project of school diary
+# School project of school log
 
 ## Requirements:
   - Input data validation ✅
@@ -32,3 +32,12 @@
           - > teachers view is the main view of the app (main purpose of the app)<br><br>
     - Admin can add and-or delete teachers - has control over the database<br>
           - > admin account is created ONLY by manual record creation in MySQL<br><br>
+
+## Week 2
+  - Creating complex DB schema for electronic school log
+  - Creating a mechanism for seeding the DB with random data
+  - Getting the database to it's final state on top of which later I'll add more functionalities
+    in the app itself
+
+    ### Design assumptions:
+    - No design assumptions for this week as I'll use console to debug
