@@ -9,7 +9,7 @@
 
 <VBox fx:id="loginPane" styleClass="login-pane" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.dziennik.LoginController">
     <Text text="Log in" style="-fx-font-size: 30px;"/>
-    <TextField fx:id="usernameField" promptText="Username" />
+    <TextField fx:id="emailField" promptText="E-mail address" />
     <PasswordField fx:id="passwordField" promptText="Password" />
     <Button fx:id="logInButton" text="Log in"/>
 </VBox>

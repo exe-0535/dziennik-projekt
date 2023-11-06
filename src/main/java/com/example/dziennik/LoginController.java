@@ -21,7 +21,7 @@ public class LoginController implements Initializable {
     @FXML
     private Button logInButton;
     @FXML
-    private TextField usernameField;
+    private TextField emailField;
     @FXML
     private PasswordField passwordField;
 
@@ -30,7 +30,7 @@ public class LoginController implements Initializable {
         logInButton.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent actionEvent) {
-                DBUtils.logInUser(actionEvent, usernameField.getText(), passwordField.getText());
+                DBUtils.logInUser(actionEvent, emailField.getText(), passwordField.getText());
             }
         });
 

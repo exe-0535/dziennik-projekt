@@ -17,7 +17,7 @@ public class DBUtils {
     private static final BasicDataSource dataSource = new BasicDataSource();
 
     // Change Scene Method
-    public static void changeScene(ActionEvent event, String fxmlFile, String title, String username) {
+    public static void changeScene(ActionEvent event, String fxmlFile, String title, String email) {
 
         Parent root = null;
 
@@ -26,13 +26,13 @@ public class DBUtils {
                 // In case of wanting to create an additional scene, put "else" or "else if" statement
                 // for whatever scene you want to load.
 
-        if(username != null) {
+        if(email != null) {
             try {
                 FXMLLoader loader = new FXMLLoader(DBUtils.class.getResource(fxmlFile));
                 root = loader.load();
 
                 // Check if user is admin or teacher and send data to the given controller
-                if(username.equals("admin")) {
+                if(email.equals("admin")) {
                     AdminController adminController = loader.getController();
                 } else {
                     TeacherController teacherController = loader.getController();
@@ -49,7 +49,7 @@ public class DBUtils {
     }
 
     // Log In Method
-    public static void logInUser(ActionEvent event, String username, String password) {
+    public static void logInUser(ActionEvent event, String email, String password) {
 
         setPooling();
 
@@ -59,8 +59,8 @@ public class DBUtils {
         try (Connection conn = dataSource.getConnection()) {
 
             // Establish connection and send a db query
-            ps = conn.prepareStatement("SELECT password FROM users WHERE username = ?");
-            ps.setString(1, username);
+            ps = conn.prepareStatement("SELECT password, role FROM users WHERE email = ?");
+            ps.setString(1, email);
             res = ps.executeQuery();
 
             // Check if user exists (if not, the statement will return false (0 records))
@@ -75,10 +75,11 @@ public class DBUtils {
                 while(res.next()) {
 
                     String retrievedPassword = res.getString("password");
-                    if (retrievedPassword.equals(password) && username.equals("admin")) {
-                        changeScene(event, "admin-view.fxml", "Admin panel", username);
+                    String retrievedRole = res.getString("role");
+                    if (retrievedPassword.equals(password) && retrievedRole.equals("admin")) {
+                        changeScene(event, "admin-view.fxml", "Admin panel", email);
                     } else if (retrievedPassword.equals(password)) {
-                        changeScene(event, "teacher-view.fxml", "Teacher panel", username);
+                        changeScene(event, "teacher-view.fxml", "Teacher panel", email);
                     } else {
                         // Inform user about the wrong password
                         Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -119,7 +120,7 @@ public class DBUtils {
     // Set pooling parameters for the database
     public static void setPooling() {
         dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
-        dataSource.setUrl("jdbc:mysql://localhost:3306/schooldiary");
+        dataSource.setUrl("jdbc:mysql://localhost:3306/school_log");
         dataSource.setUsername("root");
         dataSource.setPassword("");
 
