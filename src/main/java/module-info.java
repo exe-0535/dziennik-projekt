@@ -8,6 +8,8 @@ module com.example.dziennik {
     requires org.controlsfx.controls;
     requires org.kordamp.bootstrapfx.core;
     requires org.hibernate.orm.core;
+    requires java.persistence;
+    requires jdk.unsupported;
 
     exports com.example.dziennik.controllers;
     opens com.example.dziennik.controllers to javafx.fxml;
@@ -15,4 +17,6 @@ module com.example.dziennik {
     opens com.example.dziennik.utils to javafx.fxml;
     exports com.example.dziennik;
     opens com.example.dziennik to javafx.fxml;
+
+    opens com.example.dziennik.model to org.hibernate.orm.core;
 }

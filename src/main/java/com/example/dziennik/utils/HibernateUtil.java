@@ -1,5 +1,6 @@
 package com.example.dziennik.utils;
 
+import com.example.dziennik.model.Unit;
 import org.hibernate.*;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
@@ -28,6 +29,7 @@ public class HibernateUtil {
                 settings.put(Environment.HBM2DDL_AUTO, "update");
 
                 configuration.setProperties(settings);
+                configuration.addAnnotatedClass(Unit.class);
 
                 ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
                         .applySettings(configuration.getProperties()).build();
@@ -48,4 +50,27 @@ public class HibernateUtil {
         getSessionFactory().close();
     }
 
+    public static void main(String[] args) {
+        SessionFactory sessionFactory = getSessionFactory();
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+
+        // Query to fetch all records from the units table
+        Query<Unit> query = session.createQuery("FROM Unit", Unit.class);
+        java.util.List<Unit> units = query.getResultList();
+
+        // Print the results
+        for (Unit unit : units) {
+            System.out.println("Znaleziono unit");
+        }
+
+        // Commit the transaction
+        transaction.commit();
+
+        // Close the session
+        session.close();
+
+        // Shutdown Hibernate
+        shutdown();
+    }
 }
