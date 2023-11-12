@@ -9,6 +9,8 @@ module com.example.dziennik {
     requires org.apache.commons.dbcp2;
     requires org.hibernate.orm.core;
 
-    opens com.example.dziennik to javafx.fxml;
-    exports com.example.dziennik;
+    exports com.example.dziennik.controllers;
+    opens com.example.dziennik.controllers to javafx.fxml;
+    exports com.example.dziennik.utils;
+    opens com.example.dziennik.utils to javafx.fxml;
 }

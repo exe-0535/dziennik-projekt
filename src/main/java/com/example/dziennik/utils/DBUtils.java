@@ -1,5 +1,7 @@
-package com.example.dziennik;
+package com.example.dziennik.utils;
 
+import com.example.dziennik.controllers.AdminController;
+import com.example.dziennik.controllers.TeacherController;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -9,7 +11,6 @@ import javafx.scene.control.Alert;
 import javafx.stage.Stage;
 import org.apache.commons.dbcp2.BasicDataSource;
 
-import javax.sql.DataSource;
 import java.io.IOException;
 import java.sql.*;
 

@@ -1,4 +1,4 @@
-package com.example.dziennik;
+package com.example.dziennik.controllers;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

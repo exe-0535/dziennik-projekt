@@ -1,5 +1,6 @@
-package com.example.dziennik;
+package com.example.dziennik.controllers;
 
+import com.example.dziennik.utils.DBUtils;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
