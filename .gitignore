@@ -5,7 +5,7 @@ target/
 
 .idea
 .mvn
-.lib
+lib
 mvnw
 mvnw.cmd
 sqldumpfile.sql
