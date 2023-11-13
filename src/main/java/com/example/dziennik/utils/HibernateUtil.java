@@ -1,6 +1,8 @@
 package com.example.dziennik.utils;
 
+import com.example.dziennik.model.Lesson;
 import com.example.dziennik.model.Unit;
+import com.example.dziennik.model.User;
 import org.hibernate.*;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
@@ -30,6 +32,8 @@ public class HibernateUtil {
 
                 configuration.setProperties(settings);
                 configuration.addAnnotatedClass(Unit.class);
+                configuration.addAnnotatedClass(User.class);
+                configuration.addAnnotatedClass(Lesson.class);
 
                 ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
                         .applySettings(configuration.getProperties()).build();

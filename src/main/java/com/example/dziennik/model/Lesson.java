@@ -10,9 +10,6 @@ public class Lesson {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "lesson_id")
     private Long id;
-
-    private Long user_id;
-    private Long unit_id;
     private String day;
     private String subject;
     @Column(name = "class")
