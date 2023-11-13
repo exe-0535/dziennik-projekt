@@ -1,6 +1,7 @@
 package com.example.dziennik.model;
 
 import javax.persistence.*;
+import java.util.*;
 
 @Entity
 @Table(name = "users")
@@ -17,6 +18,18 @@ public class User {
     }
     @Enumerated(EnumType.STRING)
     private Role role;
+
+    @ManyToMany
+    @JoinTable(
+            name = "user_has_unit",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "unit_id")
+    )
+    private Set<Unit> units = new HashSet<>();
+
+    @OneToMany(mappedBy = "user")
+    private List<Lesson> lessons = new ArrayList<>();
+
 
     public Long getId() {
         return id;

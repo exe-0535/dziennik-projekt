@@ -2,6 +2,7 @@ package com.example.dziennik.model;
 
 
 import javax.persistence.*;
+import java.util.*;
 
 @Entity
 @Table(name = "units")
@@ -11,6 +12,12 @@ public class Unit {
     @Column(name = "unit_id")
     private Long id;
     private String name;
+
+    @ManyToMany(mappedBy = "units")
+    private Set<User> users = new HashSet<>();
+
+    @OneToMany(mappedBy = "unit")
+    private List<Lesson> lessons = new ArrayList<>();
 
     public Long getId() {
         return id;

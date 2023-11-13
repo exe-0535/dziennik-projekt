@@ -61,7 +61,7 @@ public class HibernateUtil {
 
         // Print the results
         for (Unit unit : units) {
-            System.out.println("Znaleziono unit");
+            System.out.println("Znaleziono unit: " + unit.getId() + ". " + unit.getName());
         }
 
         // Commit the transaction
