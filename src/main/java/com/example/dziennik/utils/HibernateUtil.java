@@ -55,26 +55,26 @@ public class HibernateUtil {
     }
 
     public static void main(String[] args) {
-        SessionFactory sessionFactory = getSessionFactory();
-        Session session = sessionFactory.openSession();
-        Transaction transaction = session.beginTransaction();
-
-        // Query to fetch all records from the units table
-        Query<Unit> query = session.createQuery("FROM Unit", Unit.class);
-        java.util.List<Unit> units = query.getResultList();
-
-        // Print the results
-        for (Unit unit : units) {
-            System.out.println("Znaleziono unit: " + unit.getId() + ". " + unit.getName());
-        }
-
-        // Commit the transaction
-        transaction.commit();
-
-        // Close the session
-        session.close();
-
-        // Shutdown Hibernate
-        shutdown();
+//        SessionFactory sessionFactory = getSessionFactory();
+//        Session session = sessionFactory.openSession();
+//        Transaction transaction = session.beginTransaction();
+//
+//        // Query to fetch all records from the units table
+//        Query<Unit> query = session.createQuery("FROM Unit", Unit.class);
+//        java.util.List<Unit> units = query.getResultList();
+//
+//        // Print the results
+//        for (Unit unit : units) {
+//            System.out.println("Znaleziono unit: " + unit.getId() + ". " + unit.getName());
+//        }
+//
+//        // Commit the transaction
+//        transaction.commit();
+//
+//        // Close the session
+//        session.close();
+//
+//        // Shutdown Hibernate
+//        shutdown();
     }
 }
