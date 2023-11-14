@@ -1,18 +1,15 @@
 package com.example.dziennik.controllers;
 
 import com.example.dziennik.dao.UserDao;
+import com.example.dziennik.helpers.CurrentUser;
 import com.example.dziennik.model.User;
-import com.example.dziennik.utils.DBUtils;
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
@@ -54,8 +51,6 @@ public class LoginController implements Initializable {
     }
     @FXML
     private void loginUser(ActionEvent event) throws IOException, InterruptedException {
-        String email = emailField.getText();
-        String pass = passwordField.getText();
 
         User user = validateLogin();
 
@@ -66,6 +61,11 @@ public class LoginController implements Initializable {
 
         if(user.getRole() == User.Role.TEACHER) {
             SceneController.getTeacherScene(event);
+            return;
+        }
+
+        if(user.getRole() == User.Role.STUDENT) {
+            SceneController.getStudentScene(event);
             return;
         }
 
@@ -85,6 +85,7 @@ public class LoginController implements Initializable {
         try {
             User user = userDao.getConnectedUser(emailField.getText(), passwordField.getText());
             if (user != null) {
+                CurrentUser.setCurrentUser(user);
                 return user;
             }
         } catch (Exception e) {
