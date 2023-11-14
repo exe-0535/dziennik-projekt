@@ -33,6 +33,16 @@ public class SceneController {
         stage.show();
     }
 
+    public static void getTeacherScene(ActionEvent event) throws IOException {
+        changeScreen(event, ScenePath.TEACHER.getPath());
+    }
+
+    public static void getAdminScene(ActionEvent event) throws IOException {
+        changeScreen(event, ScenePath.ADMIN.getPath());
+    }
+
+
+
     private static void changeScreen(ActionEvent event, String path) throws IOException {
         main = FXMLLoader.load(SceneController.class.getResource(path));
         Scene visitScene = new Scene(main);

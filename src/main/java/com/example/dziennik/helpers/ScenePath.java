@@ -2,7 +2,9 @@ package com.example.dziennik.helpers;
 
 public enum ScenePath {
 
-    LOGIN("/login-view.fxml");
+    LOGIN("/login-view.fxml"),
+    TEACHER("/teacher-view.fxml"),
+    ADMIN("/admin-view.fxml");
 
 
     private final String path;
