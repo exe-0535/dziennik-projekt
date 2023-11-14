@@ -13,7 +13,7 @@
             <Font name="Arial Unicode MS" size="27.0" />
          </font>
       </Label>
-      <Button layoutX="971.0" layoutY="23.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="232.0" style="-fx-background-color: #000;" text="Wyloguj" textAlignment="CENTER" textFill="WHITE">
+      <Button fx:id="logoutBtn" layoutX="971.0" layoutY="23.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="232.0" style="-fx-background-color: #000;" text="Wyloguj" textAlignment="CENTER" textFill="WHITE">
          <font>
             <Font size="15.0" />
          </font>

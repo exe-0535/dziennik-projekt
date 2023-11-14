@@ -45,6 +45,10 @@ public class SceneController {
         changeScreen(event, ScenePath.STUDENT.getPath());
     }
 
+    public static void getLoginScene(ActionEvent event) throws IOException {
+        changeScreen(event, ScenePath.LOGIN.getPath());
+    }
+
 
 
     private static void changeScreen(ActionEvent event, String path) throws IOException {
