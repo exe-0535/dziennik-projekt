@@ -14,6 +14,7 @@ public class Lesson {
     private String subject;
     @Column(name = "class")
     private Long classNumber;
+    private Long nr;
     private Boolean isModified;
 
     public Long getId() {
