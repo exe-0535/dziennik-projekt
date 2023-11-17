@@ -6,6 +6,9 @@
 <?import javafx.scene.text.Font?>
 
 
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
 <AnchorPane prefHeight="720" prefWidth="1280" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.dziennik.controllers.StudentController">
    <children>
       <Label fx:id="welcomeLabel" layoutX="20.0" prefHeight="75.0" prefWidth="620.0">
@@ -18,6 +21,34 @@
             <Font size="15.0" />
          </font>
       </Button>
-      <AnchorPane layoutY="75.0" prefHeight="647.0" prefWidth="1280.0" />
+      <AnchorPane layoutY="75.0" prefHeight="647.0" prefWidth="1280.0">
+         <children>
+            <TableView fx:id="tableView" prefHeight="647.0" prefWidth="1280.0" stylesheets="@../stylesheets/table.css">
+               <columns>
+                  <TableColumn maxWidth="80.0" minWidth="80.0" resizable="false" text="Nr">
+                     <cellValueFactory><PropertyValueFactory property="nr" /></cellValueFactory>
+                  </TableColumn>
+                  <TableColumn maxWidth="170.0" minWidth="170.0" prefWidth="170.0" resizable="false" text="Godz.">
+                     <cellValueFactory><PropertyValueFactory property="godzina" /></cellValueFactory>
+                  </TableColumn>
+                  <TableColumn maxWidth="200.0" minWidth="200.0" prefWidth="200.0" text="Monday">
+                     <cellValueFactory><PropertyValueFactory property="monday" /></cellValueFactory>
+                  </TableColumn>
+                  <TableColumn maxWidth="200.0" minWidth="200.0" prefWidth="200.0" text="Tuesday">
+                     <cellValueFactory><PropertyValueFactory property="tuesday" /></cellValueFactory>
+                  </TableColumn>
+                  <TableColumn maxWidth="200.0" minWidth="200.0" prefWidth="200.0" text="Thursday">
+                     <cellValueFactory><PropertyValueFactory property="wednesday" /></cellValueFactory>
+                  </TableColumn>
+                  <TableColumn maxWidth="200.0" minWidth="200.0" prefWidth="200.0" text="Thursday">
+                     <cellValueFactory><PropertyValueFactory property="thursday" /></cellValueFactory>
+                  </TableColumn>
+                  <TableColumn maxWidth="200.0" minWidth="200.0" prefWidth="200.0" text="Friday">
+                     <cellValueFactory><PropertyValueFactory property="friday" /></cellValueFactory>
+                  </TableColumn>
+               </columns>
+            </TableView>
+         </children>
+      </AnchorPane>
    </children>
 </AnchorPane>

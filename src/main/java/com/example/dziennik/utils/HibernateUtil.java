@@ -64,12 +64,12 @@ public class HibernateUtil {
 
         LessonDao lessonDao = new LessonDao();
 
-        List<Lesson> lessons = lessonDao.getLessonsForTeacher(1L);
+        List<Lesson> lessons = lessonDao.getLessonsForStudent();
         Collections.sort(lessons);
 
         for (Lesson lesson : lessons) {
             System.out.println("Lesson ID: " + lesson.getId());
-            System.out.println("Unit ID: " + lesson.getUnit().getName());
+            System.out.println("Unit ID: " + lesson.getUnit().getId());
             System.out.println("Subject: " + lesson.getSubject());
             System.out.println("Day: " + lesson.getDay());
             System.out.println("Class: " + lesson.getClassNumber());

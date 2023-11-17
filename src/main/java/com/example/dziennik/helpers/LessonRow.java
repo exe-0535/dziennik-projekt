@@ -2,6 +2,7 @@ package com.example.dziennik.helpers;
 
 import com.example.dziennik.dao.LessonDao;
 import com.example.dziennik.model.Lesson;
+import com.example.dziennik.model.User;
 import javafx.beans.property.*;
 
 import java.util.List;
@@ -137,12 +138,36 @@ public class LessonRow {
         for (Lesson ls: l
         ) {
             if(ls.getNr() == nr && ls.getDay().equals(day)) {
-                if(ls.getModified()) {
-                    return "ZASTĘPSTWO: " + ls.getUnit().getName() + " - " + ls.getClassNumber() + "\n" + ls.getSubject();
+                if(CurrentUser.getCurrentUser().getRole() == User.Role.TEACHER) {
+                    if(ls.getModified()) {
+                        return "ZASTĘPSTWO: " + ls.getUnit().getName() + " - " + ls.getClassNumber() + "\n" + ls.getSubject();
+                    }
+                    return ls.getUnit().getName() + " - " + ls.getClassNumber() + "\n" + ls.getSubject();
                 }
-                return ls.getUnit().getName() + " - " + ls.getClassNumber() + "\n" + ls.getSubject();
+                if(CurrentUser.getCurrentUser().getRole() == User.Role.STUDENT) {
+                    if(ls.getModified()) {
+                        return "ZASTĘPSTWO: " + getInitialsFromEmail(ls.getUser().getEmail()) + " - " + ls.getClassNumber() + "\n" + ls.getSubject();
+                    }
+                    return getInitialsFromEmail(ls.getUser().getEmail()) + " - " + ls.getClassNumber() + "\n" + ls.getSubject();
+                }
             }
         }
         return "";
+    }
+
+    public String getInitialsFromEmail(String email) {
+        if (email == null || email.isEmpty()) {
+            // Handle null or empty email as needed
+            return "";
+        }
+
+        // Remove any leading/trailing whitespaces
+        email = email.trim();
+
+        // Extract the first two characters
+        String initials = email.substring(0, Math.min(2, email.length()));
+
+        // Convert to uppercase
+        return initials.toUpperCase();
     }
 }
