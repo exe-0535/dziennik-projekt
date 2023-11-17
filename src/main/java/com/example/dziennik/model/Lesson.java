@@ -5,7 +5,7 @@ import java.util.*;
 
 @Entity
 @Table(name = "lessons")
-public class Lesson {
+public class Lesson implements Comparable<Lesson>{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "lesson_id")
@@ -88,4 +88,9 @@ public class Lesson {
     @ManyToOne
     @JoinColumn(name = "unit_id")
     private Unit unit;
+
+    @Override
+    public int compareTo(Lesson o) {
+        return Long.compare(this.getNr(), o.getNr());
+    }
 }

@@ -1,5 +1,6 @@
 package com.example.dziennik.utils;
 
+import com.example.dziennik.dao.LessonDao;
 import com.example.dziennik.model.Lesson;
 import com.example.dziennik.model.Unit;
 import com.example.dziennik.model.User;
@@ -9,6 +10,7 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.cfg.Environment;
 import org.hibernate.service.ServiceRegistry;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Properties;
 
@@ -60,21 +62,23 @@ public class HibernateUtil {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
 
-        // Query to fetch unit names for users with IDs 6, 7, and 8
-        Query<Unit> query = session.createQuery(
-                "SELECT u FROM Unit u " +
-                        "JOIN u.users user " +
-                        "WHERE user.id IN (6, 7, 8)",
-                Unit.class);
+        LessonDao lessonDao = new LessonDao();
 
-        List<Unit> units = query.getResultList();
+        List<Lesson> lessons = lessonDao.getLessonsForTeacher(1L);
+        Collections.sort(lessons);
 
-        // Print the results
-        for (Unit unit : units) {
-            System.out.println("User ID: " + unit.getUsers().iterator().next().getId() +
-                    ". Unit ID: " + unit.getId() +
-                    ". Unit Name: " + unit.getName());
+        for (Lesson lesson : lessons) {
+            System.out.println("Lesson ID: " + lesson.getId());
+            System.out.println("Unit ID: " + lesson.getUnit().getName());
+            System.out.println("Subject: " + lesson.getSubject());
+            System.out.println("Day: " + lesson.getDay());
+            System.out.println("Class: " + lesson.getClassNumber());
+            System.out.println("Lesson Number: " + lesson.getNr());
+            System.out.println("Is Modified: " + lesson.getModified());
+            // Add other parameters as needed
+            System.out.println("-----------------------");
         }
+
 
         // Commit the transaction
         transaction.commit();
