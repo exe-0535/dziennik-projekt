@@ -60,17 +60,20 @@ public class HibernateUtil {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
 
-        // Query to fetch all records from the units table
-        Query<Lesson> query = session.createQuery("FROM Lesson WHERE unit_id = 2", Lesson.class);
-        List<Lesson> lessons = query.getResultList();
+        // Query to fetch unit names for users with IDs 6, 7, and 8
+        Query<Unit> query = session.createQuery(
+                "SELECT u FROM Unit u " +
+                        "JOIN u.users user " +
+                        "WHERE user.id IN (6, 7, 8)",
+                Unit.class);
+
+        List<Unit> units = query.getResultList();
 
         // Print the results
-        for (Lesson lesson : lessons) {
-            System.out.println("Found lesson: " + lesson.getId() +
-                    ". Subject: " + lesson.getSubject() +
-                    ". Day: " + lesson.getDay() +
-                    ". Class: " + lesson.getClassNumber() +
-                    ". Lesson Number: " + lesson.getNr());
+        for (Unit unit : units) {
+            System.out.println("User ID: " + unit.getUsers().iterator().next().getId() +
+                    ". Unit ID: " + unit.getId() +
+                    ". Unit Name: " + unit.getName());
         }
 
         // Commit the transaction
