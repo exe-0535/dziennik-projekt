@@ -9,6 +9,7 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.cfg.Environment;
 import org.hibernate.service.ServiceRegistry;
 
+import java.util.List;
 import java.util.Properties;
 
 public class HibernateUtil {
@@ -55,26 +56,30 @@ public class HibernateUtil {
     }
 
     public static void main(String[] args) {
-//        SessionFactory sessionFactory = getSessionFactory();
-//        Session session = sessionFactory.openSession();
-//        Transaction transaction = session.beginTransaction();
-//
-//        // Query to fetch all records from the units table
-//        Query<Unit> query = session.createQuery("FROM Unit", Unit.class);
-//        java.util.List<Unit> units = query.getResultList();
-//
-//        // Print the results
-//        for (Unit unit : units) {
-//            System.out.println("Znaleziono unit: " + unit.getId() + ". " + unit.getName());
-//        }
-//
-//        // Commit the transaction
-//        transaction.commit();
-//
-//        // Close the session
-//        session.close();
-//
-//        // Shutdown Hibernate
-//        shutdown();
+        SessionFactory sessionFactory = getSessionFactory();
+        Session session = sessionFactory.openSession();
+        Transaction transaction = session.beginTransaction();
+
+        // Query to fetch all records from the units table
+        Query<Lesson> query = session.createQuery("FROM Lesson WHERE unit_id = 2", Lesson.class);
+        List<Lesson> lessons = query.getResultList();
+
+        // Print the results
+        for (Lesson lesson : lessons) {
+            System.out.println("Found lesson: " + lesson.getId() +
+                    ". Subject: " + lesson.getSubject() +
+                    ". Day: " + lesson.getDay() +
+                    ". Class: " + lesson.getClassNumber() +
+                    ". Lesson Number: " + lesson.getNr());
+        }
+
+        // Commit the transaction
+        transaction.commit();
+
+        // Close the session
+        session.close();
+
+        // Shutdown Hibernate
+        shutdown();
     }
 }

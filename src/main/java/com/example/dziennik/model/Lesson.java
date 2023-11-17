@@ -17,6 +17,14 @@ public class Lesson {
     private Long nr;
     private Boolean isModified;
 
+    public Long getNr() {
+        return nr;
+    }
+
+    public void setNr(Long nr) {
+        this.nr = nr;
+    }
+
     public Long getId() {
         return id;
     }
