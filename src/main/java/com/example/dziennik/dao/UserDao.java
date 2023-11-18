@@ -7,6 +7,7 @@ import org.hibernate.Transaction;
 
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
+import java.util.List;
 
 public class UserDao {
 
@@ -31,5 +32,28 @@ public class UserDao {
         }
     }
 
+    public static List<String> getMails() {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            TypedQuery<String> query = session.createQuery("SELECT u.email FROM User u WHERE u.role = :role", String.class);
+            query.setParameter("role", User.Role.TEACHER);
+            return query.getResultList();
+        } catch (NoResultException ex) {
+            System.err.println("Couldn't retireve the emails list");
+            return null;
+        }
+    }
+
+    public static Long getUserIdByEmail(String email) {
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            TypedQuery<Long> query = session.createQuery("SELECT u.id FROM User u WHERE u.email = :email", Long.class);
+            query.setParameter("email", email);
+            // Retrieve the user_id or return null if not found
+            List<Long> userIds = query.getResultList();
+            return userIds.isEmpty() ? null : userIds.get(0);
+        } catch (NoResultException ex) {
+            System.err.println("Couldn't retireve the id");
+            return null;
+        }
+    }
 
 }

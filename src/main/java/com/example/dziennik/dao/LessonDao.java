@@ -7,6 +7,7 @@ import com.example.dziennik.model.User;
 import com.example.dziennik.utils.HibernateUtil;
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.hibernate.Transaction;
 
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
@@ -47,4 +48,27 @@ public class LessonDao {
         }
     }
 
+    public void updateLesson(long nr, long new_user_id, long old_user_id, String day, String subject, long classNumber) {
+        Transaction ts = null;
+        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
+            ts = session.beginTransaction();
+
+            session.createQuery("UPDATE Lesson l SET l.subject = :subject, l.classNumber = :classNumber, l.isModified = 1, l.user.id = :new_user_id WHERE day = :day AND nr = :nr AND user.id = :old_user_id")
+                    .setParameter("nr", nr)
+                    .setParameter("old_user_id", old_user_id)
+                    .setParameter("new_user_id", new_user_id)
+                    .setParameter("day", day)
+                    .setParameter("subject", subject)
+                    .setParameter("classNumber", classNumber)
+                    .executeUpdate();
+
+            ts.commit();
+        } catch (Exception e) {
+            if (ts != null) {
+                ts.rollback();
+                System.out.println("Transaction rolled back.");
+            }
+            e.printStackTrace();
+        }
+    }
 }

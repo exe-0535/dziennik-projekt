@@ -26,25 +26,25 @@
                   <Font size="29.0" />
                </font>
             </Label>
-            <ChoiceBox layoutX="245.0" layoutY="97.0" prefWidth="150.0" />
+            <ChoiceBox fx:id="nr" layoutX="245.0" layoutY="97.0" prefWidth="150.0" />
             <Label alignment="CENTER" layoutY="43.0" prefHeight="54.0" prefWidth="640.0" text="Numer lekcji:">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
-            <ChoiceBox layoutX="245.0" layoutY="188.0" prefWidth="150.0" />
+            <ChoiceBox fx:id="oldMail" layoutX="245.0" layoutY="188.0" prefWidth="150.0" />
             <Label alignment="CENTER" layoutY="134.0" prefHeight="54.0" prefWidth="640.0" text="Mail nauczyciela:">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
-            <ChoiceBox layoutX="245.0" layoutY="282.0" prefWidth="150.0" />
+            <ChoiceBox fx:id="day" layoutX="245.0" layoutY="282.0" prefWidth="150.0" />
             <Label alignment="CENTER" layoutY="228.0" prefHeight="54.0" prefWidth="640.0" text="Dzień tygodnia:">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
-            <ChoiceBox layoutX="871.0" layoutY="201.0" prefWidth="150.0" />
+            <ChoiceBox fx:id="newMail" layoutX="871.0" layoutY="201.0" prefWidth="150.0" />
             <Label alignment="CENTER" layoutX="626.0" layoutY="142.0" prefHeight="54.0" prefWidth="640.0" text="Mail nowego nauczyciela:">
                <font>
                   <Font size="15.0" />
@@ -55,14 +55,14 @@
                   <Font size="15.0" />
                </font>
             </Label>
-            <TextField layoutX="872.0" layoutY="97.0" promptText="eg. English" />
+            <TextField fx:id="subject" layoutX="872.0" layoutY="97.0" promptText="eg. English" />
             <Label alignment="CENTER" layoutX="626.0" layoutY="228.0" prefHeight="54.0" prefWidth="640.0" text="Nowa sala:">
                <font>
                   <Font size="15.0" />
                </font>
             </Label>
-            <TextField layoutX="872.0" layoutY="282.0" promptText="eg. 102" />
-            <Button alignment="CENTER" layoutX="506.0" layoutY="453.0" mnemonicParsing="false" prefHeight="92.0" prefWidth="269.0" style="-fx-background-color: #000;" text="Wprowadź zmiany" textAlignment="CENTER" textFill="WHITE">
+            <TextField fx:id="classnr" layoutX="872.0" layoutY="282.0" promptText="eg. 102" />
+            <Button fx:id="updateBtn" alignment="CENTER" layoutX="506.0" layoutY="453.0" mnemonicParsing="false" prefHeight="92.0" prefWidth="269.0" style="-fx-background-color: #000;" text="Wprowadź zmiany" textAlignment="CENTER" textFill="WHITE">
                <font>
                   <Font size="21.0" />
                </font>
